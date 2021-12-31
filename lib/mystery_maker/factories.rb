@@ -96,7 +96,7 @@ FactoryBot.define do
       check_in.strftime("%Y%m%d")
     end
     type { %w[murder].sample } # todo
-    description { Faker::Fantasy::Tolkien.poem }
+    description { Faker::Fantasy::Tolkien.unique.poem }
     city { Faker::Address.city }
   end
 end

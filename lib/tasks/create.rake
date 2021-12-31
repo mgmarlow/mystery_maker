@@ -6,7 +6,7 @@ namespace :db do
     raise "Error: database already created" if File.exists?(db_config["database"])
 
     SQLite3::Database.new(db_config["database"]) do |db|
-      db.execute <<-SQL
+      db.execute_batch <<-SQL
         CREATE TABLE drivers_license (
           id TEXT PRIMARY KEY,
           age INTEGER,
@@ -18,9 +18,7 @@ namespace :db do
           car_make TEXT,
           car_model TEXT
         );
-      SQL
 
-      db.execute <<-SQL
         CREATE TABLE person (
           id INTEGER PRIMARY KEY,
           name TEXT UNIQUE,
@@ -30,6 +28,54 @@ namespace :db do
           ssn TEXT UNIQUE,
           FOREIGN KEY (license_id)
             REFERENCES drivers_license (id)
+        );
+
+        CREATE TABLE interview (
+          person_id INTEGER,
+          transcript TEXT,
+          FOREIGN KEY (person_id)
+            REFERENCES person (id)
+        );
+
+        CREATE TABLE get_fit_now_member (
+          id TEXT PRIMARY KEY,
+          person_id INTEGER,
+          membership_start_date INTEGER,
+          membership_status TEXT,
+          FOREIGN KEY (person_id)
+            REFERENCES person (id)
+        );
+
+        CREATE TABLE get_fit_now_checkin (
+          membership_id TEXT,
+          check_in_date INTEGER,
+          check_in_time INTEGER,
+          check_out_time INTEGER,
+          FOREIGN KEY (membership_id)
+            REFERENCES get_fit_now_member (id)
+        );
+
+        CREATE TABLE facebook_event_checkin (
+          person_id INTEGER,
+          event_id INTEGER,
+          event_name TEXT,
+          date INTEGER,
+          FOREIGN KEY (person_id)
+            REFERENCES person (id)
+        );
+
+        CREATE TABLE crime_scene_report (
+          date INTEGER,
+          type TEXT,
+          description TEXT UNIQUE,
+          city TEXT
+        );
+
+        CREATE TABLE income (
+          ssn INTEGER,
+          annual_income INTEGER,
+          FOREIGN KEY (ssn)
+            REFERENCES person (ssn)
         );
       SQL
     end
