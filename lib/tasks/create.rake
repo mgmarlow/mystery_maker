@@ -27,6 +27,7 @@ namespace :db do
           license_id INTEGER,
           address_number INTEGER UNIQUE,
           address_street_name TEXT,
+          ssn TEXT UNIQUE,
           FOREIGN KEY (license_id)
             REFERENCES drivers_license (id)
         );
