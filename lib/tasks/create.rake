@@ -8,7 +8,7 @@ namespace :db do
     SQLite3::Database.new(db_config["database"]) do |db|
       db.execute <<-SQL
         CREATE TABLE drivers_license (
-          id INTEGER PRIMARY KEY,
+          id TEXT PRIMARY KEY,
           age INTEGER,
           height INTEGERL,
           eye_color TEXT,
@@ -32,6 +32,7 @@ namespace :db do
         );
       SQL
     end
-    puts "Database created"
+
+    puts "Database created."
   end
 end
