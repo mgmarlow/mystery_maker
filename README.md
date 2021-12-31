@@ -1,38 +1,41 @@
 # MysteryMaker
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/mystery_maker`. To experiment with that code, run `bin/console` for an interactive prompt.
+Randomly-generated mysteries derived from the [SQL City Murder Mystery](https://mystery.knightlab.com/).
 
-TODO: Delete this and the text above, and describe your gem
+Solve the case:
+
+> A crime has taken place and the detective needs your help. The
+> detective gave you the crime scene report, but you somehow lost it.
+> You vaguely remember that the crime was a ​murder​ that occurred sometime
+> on ​Jan.15, 2018​ and that it took place in ​SQL City​. Start by retrieving
+> the corresponding crime scene report from the police department’s database.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+```
+git clone https://github.com/mgmarlow/mystery_maker.git
 
-```ruby
-gem 'mystery_maker'
+cd mystery_maker
+bundle install
 ```
 
-And then execute:
+Set up the `mystery.db` Sqlite3 database:
 
-    $ bundle install
+```
+bundle exec rake db:reset
+```
 
-Or install it yourself as:
+Test that everything worked as expected:
 
-    $ gem install mystery_maker
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+```
+$ sqlite3
+$ .open mystery.db
+$ select * from 'crime_scene_report' where city='SQL City' and date=20180115 and type='murder';
+```
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/mystery_maker.
+Bug reports and pull requests are welcome on [GitHub](https://github.com/mgmarlow/mystery_maker).
 
 ## License
 
