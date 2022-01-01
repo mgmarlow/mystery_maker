@@ -22,8 +22,6 @@ end
 class Income < OpenStruct
 end
 
-MURDER_DATE = '2018-01-24' # todo
-
 FactoryBot.define do
   factory :drivers_license do
     id { Faker::DrivingLicence.unique.usa_driving_licence }
@@ -71,13 +69,8 @@ end
 FactoryBot.define do
   factory :get_fit_now_checkin do
     membership { association :get_fit_now_member }
-    # Exclude certain dates that will be used in mysteries
     check_in_date do
-      check_in = Faker::Date.between_except(
-        from: '2010-01-01',
-        to: '2022-01-01',
-        excepted: MURDER_DATE
-      )
+      check_in = Faker::Date.between_except(from: '2010-01-01', to: '2022-01-01')
       check_in.strftime("%Y%m%d")
     end
     check_in_time { "todo" }
@@ -88,11 +81,7 @@ end
 FactoryBot.define do
   factory :crime_scene_report do
     date do
-      check_in = Faker::Date.between_except(
-        from: '2010-01-01',
-        to: '2022-01-01',
-        excepted: MURDER_DATE
-      )
+      check_in = Faker::Date.between_except(from: '2010-01-01', to: '2022-01-01')
       check_in.strftime("%Y%m%d")
     end
     type { %w[murder robbery theft fraud arson smuggling blackmail].sample }
