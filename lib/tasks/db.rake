@@ -18,8 +18,6 @@ namespace :db do
     scenario = MysteryMaker::ScenarioA.new
     scenario.setup
     puts "Scenario configured."
-    # TODO: Generate extra, non-scenario noise.
-    puts "Noise generated."
     puts "Database seeded."
   end
 

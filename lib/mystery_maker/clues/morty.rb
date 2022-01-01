@@ -19,6 +19,8 @@ module MysteryMaker
         generate_noise
       end
 
+      private
+
       def generate_noise
         # todo
       end

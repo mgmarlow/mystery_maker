@@ -22,6 +22,8 @@ module MysteryMaker
         create_income
       end
 
+      private
+
       def create_income
         Income.create({
           ssn: accomplice.ssn,

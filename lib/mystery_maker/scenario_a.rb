@@ -26,6 +26,8 @@ module MysteryMaker
       create_perp_transcript(clue_c.description)
     end
 
+    private
+
     def create_crime_scene_report(desc)
       CrimeSceneReport.create({
         description: desc,
@@ -38,8 +40,6 @@ module MysteryMaker
     def create_perp_transcript(desc)
       Interview.create(person_id: perp.id, transcript: desc)
     end
-
-    private
 
     def perp
       @perp ||= Person.create_with_random
