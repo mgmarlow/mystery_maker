@@ -8,7 +8,7 @@ module MysteryMaker
   # All of the clues needed to solve the mystery.
   # Can be generated randomly, but need to produce
   # deterministic results when seeding.
-  class ClueSet
+  class ScenarioA
     def crime_scene_report
       CrimeSceneReport.new({
         desc: REPORT_DESCRIPTION,
@@ -16,12 +16,6 @@ module MysteryMaker
         city: "SQL City",
         date: MURDER_DATE
       })
-    end
-
-    # TODO: Separate clues into classes so they can be composed
-    # into different scenarios.
-    def witness_street_addresses
-      ["Northwestern Dr", "Franklin Ave"]
     end
 
     # Assuming extra noise is generated separately
@@ -56,6 +50,14 @@ module MysteryMaker
           transcript: SECOND_WITNESS_TRANSCRIPT
         })
       ]
+    end
+
+    private
+
+    # TODO: Separate clues into classes so they can be composed
+    # into different scenarios.
+    def witness_street_addresses
+      ["Northwestern Dr", "Franklin Ave"]
     end
 
     def first_witness

@@ -6,7 +6,7 @@ require "factory_bot"
 
 require_relative "mystery_maker/version"
 require_relative "mystery_maker/repository"
-require_relative "mystery_maker/clue_set"
+require_relative "mystery_maker/scenario_a"
 require_relative "mystery_maker/factories"
 
 module MysteryMaker

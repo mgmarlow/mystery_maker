@@ -17,9 +17,9 @@ namespace :db do
   desc "Seed mystery"
   task :seed do
     repo = MysteryMaker::Repository.new
-    clues = MysteryMaker::ClueSet.new
+    scenario = MysteryMaker::ScenarioA.new
 
-    clues.npcs.each do |person|
+    scenario.npcs.each do |person|
       puts "Seeding #{person.name}"
       repo.save_person(person)
     end
