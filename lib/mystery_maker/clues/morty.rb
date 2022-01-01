@@ -33,7 +33,7 @@ module MysteryMaker
         member_hint = perp_membership.id[0..2]
         status_hint = perp_membership.membership_status
 
-        "I heard a gunshot and then saw a man run out." + \
+        "I heard a gunshot and then saw a #{gender_hint} run out. " + \
           "He had a \"Get Fit Now Gym\" bag. The membership " + \
           "number on the bag started with \"#{member_hint}\". Only #{status_hint} " + \
           "members have those bags. The #{gender_hint} got into a car " + \

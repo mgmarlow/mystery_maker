@@ -61,10 +61,10 @@ FactoryBot.define do
   factory :drivers_license do
     id { Faker::DrivingLicence.unique.usa_driving_licence }
     age { Faker::Number.number(digits: 2) }
-    height { Faker::Number.number(digits: 3) }
+    height { Faker::Number.number(digits: 2) }
     eye_color { Faker::Color.color_name }
     hair_color { Faker::Color.color_name }
-    gender { Faker::Gender.type }
+    gender { Faker::Gender.binary_type }
     plate_number { Faker::Alphanumeric.unique.alpha(number: 7) }
     car_make { Faker::Vehicle.make }
     car_model { Faker::Vehicle.model }
