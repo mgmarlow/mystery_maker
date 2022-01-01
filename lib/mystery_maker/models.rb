@@ -1,30 +1,59 @@
 class DriversLicense < ActiveRecord::Base
+  def self.create_with_random(*args)
+    FactoryBot.create(:drivers_license, *args)
+  end
 end
 
 class Person < ActiveRecord::Base
   has_one :drivers_license
+
+  def self.create_with_random(*args)
+    FactoryBot.create(:person, *args)
+  end
 end
 
 class Interview < ActiveRecord::Base
+  def self.create_with_random(*args)
+    FactoryBot.create(:interview, *args)
+  end
 end
 
 class GetFitNowCheckIn < ActiveRecord::Base
   belongs_to :get_fit_now_member
+
+  def self.create_with_random(*args)
+    FactoryBot.create(:get_fit_now_check_in, *args)
+  end
 end
 
 class GetFitNowMember < ActiveRecord::Base
   belongs_to :person
+
+  def self.create_with_random(*args)
+    FactoryBot.create(:get_fit_now_member, *args)
+  end
 end
 
 class FacebookEventCheckIn < ActiveRecord::Base
   belongs_to :person
+
+  def self.create_with_random(*args)
+    FactoryBot.create(:facebook_event_check_in, *args)
+  end
 end
 
 class CrimeSceneReport < ActiveRecord::Base
   self.inheritance_column = "klass_type"
+
+  def self.create_with_random(*args)
+    FactoryBot.create(:crime_scene_report, *args)
+  end
 end
 
 class Income < ActiveRecord::Base
+  def self.create_with_random(*args)
+    FactoryBot.create(:income, *args)
+  end
 end
 
 FactoryBot.define do

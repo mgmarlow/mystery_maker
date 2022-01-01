@@ -100,20 +100,17 @@ module MysteryMaker
     end
 
     def create_facebook_event_check_ins
-      FactoryBot.create(
-        :facebook_event_check_in,
+      FacebookEventCheckIn.create_with_random(
         person: perp_accomplice,
         event_name: "SQL Symphony Concert",
         date: 20171204
       )
-      FactoryBot.create(
-        :facebook_event_check_in,
+      FacebookEventCheckIn.create_with_random(
         person: perp_accomplice,
         event_name: "SQL Symphony Concert",
         date: 20171208
       )
-      FactoryBot.create(
-        :facebook_event_check_in,
+      FacebookEventCheckIn.create_with_random(
         person: perp_accomplice,
         event_name: "SQL Symphony Concert",
         date: 20171218
@@ -130,32 +127,31 @@ module MysteryMaker
     private
 
     def first_witness
-      @first_witness ||= FactoryBot.create(:person, name: "Annabel Miller", address_street_name: "Franklin Ave")
+      @first_witness ||= Person.create_with_random(name: "Annabel Miller", address_street_name: "Franklin Ave")
     end
 
     def second_witness
-      @second_witness ||= FactoryBot.create(:person, address_number: NORTHWESTERN_NPCS + 1, address_street_name: "Northwestern Dr")
+      @second_witness ||= Person.create_with_random(address_number: NORTHWESTERN_NPCS + 1, address_street_name: "Northwestern Dr")
     end
 
     # Should this be its own class?
     # TODO: Generate other npcs that have either a plate # or member number like the perp.
     def perp
       @perp ||= begin
-        license = FactoryBot.build(
-          :drivers_license,
+        license = DriversLicense.create_with_random(
           plate_number: PERP_PLATE_NUMBER
         )
-        FactoryBot.create(:person, drivers_license: license)
+        Person.create_with_random(drivers_license: license)
       end
     end
 
     def perp_membership
-      FactoryBot.build(:get_fit_now_member, person: perp, id: PERP_MEMBER_NUMBER)
+      GetFitNowMember.create_with_random(person: perp, id: PERP_MEMBER_NUMBER)
     end
 
     def perp_accomplice
       @perp_accomplice ||= begin
-        license = FactoryBot.build(:drivers_license,
+        license = DriversLicense.create_with_random(
           car_model: "Model S",
           car_make: "Tesla",
           height: 66,
