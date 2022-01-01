@@ -21,9 +21,10 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "sqlite3", "~> 1.4.2"
   spec.add_dependency "faker", "~> 2.19.0"
   spec.add_dependency "factory_bot", "~> 6.2.0"
+  spec.add_dependency "activerecord", "~> 7.0.0"
+  spec.add_dependency "sqlite3", "~> 1.4.2"
 
   spec.add_development_dependency "pry", "~> 0.14.1"
 

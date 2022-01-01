@@ -1,31 +1,25 @@
 namespace :db do
+  db_config = YAML::load(File.open("config/database.yml"))
+
   desc "Create the database"
   task :create do
-    MysteryMaker::Repository.new.create_database
+    `sqlite3 #{db_config["database"]} < "config/structure.sql"`
     puts "Database created."
   end
 
   desc "Drop the database"
   task :drop do
-    MysteryMaker::Repository.new.drop_database
+    File.delete(db_config["database"]) if File.exists?(db_config["database"])
     puts "Database deleted."
   end
 
-  # TODO: Add unit tests to ensure the generated path is
-  # actually solvable.
-  # TODO: Generate a Faker::Config.random.seed for repro.
   desc "Seed mystery"
   task :seed do
-    repo = MysteryMaker::Repository.new
     scenario = MysteryMaker::ScenarioA.new
-
-    scenario.npcs.each do |person|
-      puts "Seeding #{person.name}"
-      repo.save_person(person)
-    end
-
-    # TODO: Keep track of excepted dates and other clues
-
+    scenario.setup
+    puts "Scenario configured."
+    # TODO: Generate extra, non-scenario noise.
+    puts "Noise generated."
     puts "Database seeded."
   end
 

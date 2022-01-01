@@ -1,25 +1,30 @@
-class DriversLicense < OpenStruct
+class DriversLicense < ActiveRecord::Base
 end
 
-class Person < OpenStruct
+class Person < ActiveRecord::Base
+  has_one :drivers_license
 end
 
-class Interview < OpenStruct
+class Interview < ActiveRecord::Base
 end
 
-class GetFitNowCheckin < OpenStruct
+class GetFitNowCheckIn < ActiveRecord::Base
+  belongs_to :get_fit_now_member
 end
 
-class GetFitNowMember < OpenStruct
+class GetFitNowMember < ActiveRecord::Base
+  belongs_to :person
 end
 
-class FacebookEventCheckin < OpenStruct
+class FacebookEventCheckIn < ActiveRecord::Base
+  belongs_to :person
 end
 
-class CrimeSceneReport < OpenStruct
+class CrimeSceneReport < ActiveRecord::Base
+  self.inheritance_column = "klass_type"
 end
 
-class Income < OpenStruct
+class Income < ActiveRecord::Base
 end
 
 FactoryBot.define do
@@ -91,11 +96,20 @@ FactoryBot.define do
 end
 
 FactoryBot.define do
-  factory :facebook_event_checkin do
+  factory :facebook_event_check_in do
+    event_id { Faker::Number.number(digits: 7) }
+    event_name { Faker::Music::Opera.mozart }
+    date do
+      check_in = Faker::Date.between_except(from: '2010-01-01', to: '2022-01-01')
+      check_in.strftime("%Y%m%d")
+    end
+    person
   end
 end
 
 FactoryBot.define do
   factory :income do
+    ssn { Faker::IDNumber.unique.invalid }
+    annual_income { Faker::Number.within(range: 40_000..300_000) }
   end
 end
