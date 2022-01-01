@@ -28,6 +28,7 @@ end
 
 class GetFitNowMember < ActiveRecord::Base
   belongs_to :person
+  has_many :get_fit_now_check_in
 
   def self.create_with_random(*args)
     FactoryBot.create(:get_fit_now_member, *args)
@@ -90,7 +91,7 @@ end
 
 FactoryBot.define do
   factory :get_fit_now_member do
-    id { Faker::Alphanumeric.unique.alpha(number: 4) }
+    id { Faker::Alphanumeric.unique.alpha(number: 5) }
     membership_start_date do
       start = Faker::Date.between(from: "2010-01-01", to: "2022-01-01")
       start.strftime("%Y%m%d")

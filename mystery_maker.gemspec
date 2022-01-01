@@ -27,6 +27,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "sqlite3", "~> 1.4.2"
 
   spec.add_development_dependency "pry", "~> 0.14.1"
+  spec.add_development_dependency "pry-byebug", "~> 3.8.0"
 
   # For more information and examples about making a new gem, checkout our
   # guide at: https://bundler.io/guides/creating_gem.html

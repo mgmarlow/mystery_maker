@@ -10,6 +10,8 @@ ActiveRecord::Base.establish_connection(db_config)
 
 require_relative "mystery_maker/version"
 require_relative "mystery_maker/models"
+require_relative "mystery_maker/clues/annabel"
+require_relative "mystery_maker/clues/morty"
 require_relative "mystery_maker/scenario_a"
 
 module MysteryMaker
