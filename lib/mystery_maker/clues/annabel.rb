@@ -52,21 +52,21 @@ module MysteryMaker
       def perp_membership
         existing = GetFitNowMember.find_by(person: perp)
         return existing unless existing.nil?
-        GetFitNowMember.create_with_random(person: perp)
+        GetFitNowMember.create_with_random({ person: perp })
       end
 
       def annabel_membership
-        GetFitNowMember.create_with_random(person: annabel)
+        GetFitNowMember.create_with_random({ person: annabel })
       end
 
       def annabel
         @annabel ||= begin
-          license = DriversLicense.create_with_random(gender: "female")
-          Person.create_with_random(
+          license = DriversLicense.create_with_random({ gender: "female" })
+          Person.create_with_random({
             name: "Annabel Miller",
             address_street_name: "Franklin Ave",
             drivers_license: license
-          )
+          })
         end
       end
     end

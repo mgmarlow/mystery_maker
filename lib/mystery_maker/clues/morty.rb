@@ -49,11 +49,11 @@ module MysteryMaker
       end
 
       def morty
-        @morty ||= Person.create_with_random(
+        @morty ||= Person.create_with_random({
           name: "Morty Shapiro",
           address_number: ADDRESS_NUMBER,
           address_street_name: "Northwestern Dr"
-        )
+        })
       end
     end
   end

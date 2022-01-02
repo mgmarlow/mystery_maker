@@ -32,21 +32,21 @@ module MysteryMaker
       end
 
       def create_facebook_event_check_ins
-        FacebookEventCheckIn.create_with_random(
+        FacebookEventCheckIn.create_with_random({
           person: accomplice,
           event_name: "SQL Symphony Concert",
           date: 20171204
-        )
-        FacebookEventCheckIn.create_with_random(
+        })
+        FacebookEventCheckIn.create_with_random({
           person: accomplice,
           event_name: "SQL Symphony Concert",
           date: 20171208
-        )
-        FacebookEventCheckIn.create_with_random(
+        })
+        FacebookEventCheckIn.create_with_random({
           person: accomplice,
           event_name: "SQL Symphony Concert",
           date: 20171218
-        )
+        })
       end
 
       def accomplice

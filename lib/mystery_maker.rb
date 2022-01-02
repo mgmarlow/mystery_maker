@@ -2,7 +2,6 @@
 
 require "yaml"
 require "faker"
-require "factory_bot"
 require "active_record"
 
 db_config = YAML::load(File.open("config/database.yml"))
@@ -16,8 +15,6 @@ require_relative "mystery_maker/clues/accomplice"
 require_relative "mystery_maker/scenario_a"
 
 module MysteryMaker
-  include FactoryBot::Syntax::Methods
-
   class Error < StandardError; end
   # Your code goes here...
 end
