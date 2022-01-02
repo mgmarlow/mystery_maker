@@ -8,11 +8,9 @@ db_config = YAML::load(File.open("config/database.yml"))
 ActiveRecord::Base.establish_connection(db_config)
 
 require_relative "mystery_maker/version"
-require_relative "mystery_maker/models"
-require_relative "mystery_maker/clues/annabel"
-require_relative "mystery_maker/clues/morty"
-require_relative "mystery_maker/clues/accomplice"
-require_relative "mystery_maker/scenario_a"
+Dir[File.join(__dir__, "/mystery_maker/models/*.rb")].each {|file| require_relative file }
+Dir[File.join(__dir__, "/mystery_maker/clues/*.rb")].each {|file| require_relative file }
+Dir[File.join(__dir__, "/mystery_maker/scenarios/*.rb")].each {|file| require_relative file }
 
 module MysteryMaker
   class Error < StandardError; end
