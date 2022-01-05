@@ -15,10 +15,8 @@ namespace :db do
 
   desc "Seed mystery"
   task :seed do
-    scenario = MysteryMaker::ScenarioA.new
-    scenario.setup
+    MysteryMaker::ScenarioA.new
     puts "Scenario configured."
-    puts "Database seeded."
   end
 
   desc "Reset database with seeded data"

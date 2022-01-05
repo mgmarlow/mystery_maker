@@ -1,7 +1,7 @@
 module MysteryMaker
   module Clues
-    class Morty
-      DESCRIPTION = "A witness lives at the last house on \"Northwestern Dr\"."
+    class WitnessMorty
+      CLUE = "A witness lives at the last house on \"Northwestern Dr\"."
       ADDRESS_NUMBER = 478
 
       attr_reader :perp
@@ -10,13 +10,11 @@ module MysteryMaker
         @perp = perp
       end
 
-      def description
-        DESCRIPTION
-      end
-
-      def setup_tables
+      def setup
         create_interview
         generate_noise
+
+        CLUE
       end
 
       private

@@ -1,7 +1,20 @@
 module MysteryMaker
   module Clues
     class Accomplice
-      def description
+      def setup
+        create_facebook_event_check_ins
+        create_income
+
+        clue
+      end
+
+      private
+
+      def generate_noise
+        # todo
+      end
+
+      def clue
         gender_hint = accomplice.drivers_license.gender
         height_hint = accomplice.drivers_license.height
         hair_hint = accomplice.drivers_license.hair_color
@@ -12,17 +25,6 @@ module MysteryMaker
           "They have #{hair_hint} hair and they drive a #{car_hint}. " + \
           "I know that they attended the SQL Symphony Concert 3 times in December 2017."
       end
-
-      def generate_noise
-        # todo
-      end
-
-      def setup_tables
-        create_facebook_event_check_ins
-        create_income
-      end
-
-      private
 
       def create_income
         Income.create({

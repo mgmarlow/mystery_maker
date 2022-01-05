@@ -1,7 +1,7 @@
 module MysteryMaker
   module Clues
-    class Annabel
-      DESCRIPTION = "A witness, named Annabel, lives somewhere on \"Franklin Ave\"."
+    class WitnessAnnabel
+      CLUE = "A witness, named Annabel, lives somewhere on \"Franklin Ave\"."
       TRANSCRIPT = "I saw the murder happen, and I recognized the " + \
                    "killer from my gym when I was working out last " + \
                    "week on January the 9th."
@@ -13,14 +13,12 @@ module MysteryMaker
         @perp = perp
       end
 
-      def description
-        DESCRIPTION
-      end
-
-      def setup_tables
+      def setup
         create_get_fit_now_check_ins
         create_interview
         generate_noise
+
+        CLUE
       end
 
       private
