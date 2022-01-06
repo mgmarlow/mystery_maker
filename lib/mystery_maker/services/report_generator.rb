@@ -1,14 +1,14 @@
 class ReportGenerator
-  attr_reader :witnesses, :crime_event
+  attr_reader :witnesses, :murder_date
 
-  def initialize(witnesses, crime_event)
+  def initialize(witnesses, murder_date)
     @witnesses = witnesses
-    @crime_event = crime_event
+    @murder_date = murder_date
   end
 
   def call
     CrimeSceneReport.create(
-      date: crime_event.date,
+      date: murder_date,
       kind: "murder",
       description: description,
       city: "SQL City"

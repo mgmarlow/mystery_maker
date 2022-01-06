@@ -8,6 +8,7 @@ db_config = YAML.safe_load(File.open("config/database.yml"))
 ActiveRecord::Base.establish_connection(db_config)
 
 require_relative "mystery_maker/version"
+require_relative "mystery_maker/game"
 Dir[File.join(__dir__, "/mystery_maker/models/*.rb")].each { |file| require_relative file }
 Dir[File.join(__dir__, "/mystery_maker/services/*.rb")].each { |file| require_relative file }
 

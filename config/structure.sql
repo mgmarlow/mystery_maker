@@ -59,3 +59,10 @@ CREATE TABLE crime_scene_reports (
   description TEXT,
   city TEXT
 );
+
+CREATE TABLE solutions (
+  murder_date INTEGER,
+  person_id TEXT,
+  FOREIGN KEY (person_id)
+    REFERENCES people (id)
+)

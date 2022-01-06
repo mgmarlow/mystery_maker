@@ -65,37 +65,27 @@ world["events"].each do |data|
   end
 end
 
+puts "Creating solution..."
 people_with_events = Person.joins(:events).group("people.id")
-
-puts "Creating perp..."
 perp = people_with_events.sample
-
-puts "Creating witnesses..."
-# Find any people that went to the same events as the perp.
-witnesses = perp.events
-  .flat_map { |event| Event.find(event.id).people }
-  .sample(2)
-
-crime_event = perp.events.sample
+murder_date = perp.events.sample.date
+Solution.create(person: perp, murder_date: murder_date)
 
 puts "Creating crime scene reports..."
 100.times do
   date = create_date
-
-  kinds = if date == crime_event.date
+  kinds = if date == murder_date
     world["crimes"].filter { |c| c != "murder" }
   else
     world["crimes"]
   end
 
   CrimeSceneReport.create(
-    date: date,
+    date: create_date,
     kind: kinds.sample,
     description: Faker::Quotes::Shakespeare.hamlet_quote,
     city: world["cities"].sample
   )
 end
 
-murder = ReportGenerator.new(witnesses, crime_event).call
-puts "\nA murder occurred at #{murder.date} in #{murder.city}. " \
-     "Find the perp!\n(hint: Take a look at crime_scene_reports)"
+Game.new.run
