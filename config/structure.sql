@@ -8,18 +8,17 @@ CREATE TABLE drivers_licenses (
   plate_number TEXT UNIQUE,
   car_make TEXT,
   car_model TEXT,
-  person_id INTEGER,
+  person_id TEXT,
   FOREIGN KEY (person_id)
     REFERENCES people (id)
 );
 
 CREATE TABLE people (
-  id INTEGER PRIMARY KEY,
+  id TEXT PRIMARY KEY,
   name TEXT UNIQUE,
   drivers_license_id INTEGER,
   address_number INTEGER UNIQUE,
-  address_street_name TEXT,
-  ssn TEXT UNIQUE
+  address_street_name TEXT
 );
 
 CREATE TABLE interviews (
@@ -46,7 +45,7 @@ CREATE TABLE events (
 );
 
 CREATE TABLE events_people (
-  person_id INTEGER,
+  person_id TEXT,
   event_id INTEGER,
   FOREIGN KEY (person_id)
     REFERENCES people (id),

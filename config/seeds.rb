@@ -17,10 +17,10 @@ end
 puts "Creating people..."
 people = 500.times.map do
   Person.create(
-    name: Faker::Name.unique.name,
+    id: Faker::IDNumber.unique.invalid,
+    name: "#{Faker::Name.first_name} #{Faker::Name.last_name}",
     address_number: Faker::Address.unique.building_number,
     address_street_name: world["streets"].sample,
-    ssn: Faker::IDNumber.unique.invalid,
     drivers_license: create_random_drivers_license
   )
 end
@@ -97,4 +97,5 @@ puts "Creating crime scene reports..."
 end
 
 murder = ReportGenerator.new(witnesses, crime_event).call
-puts "\nA murder occurred at #{murder.date} in #{murder.city}. Find the perp!\n(hint: Take a look at crime_scene_reports)"
+puts "\nA murder occurred at #{murder.date} in #{murder.city}. " \
+     "Find the perp!\n(hint: Take a look at crime_scene_reports)"
