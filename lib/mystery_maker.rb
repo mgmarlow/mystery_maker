@@ -9,7 +9,7 @@ ActiveRecord::Base.establish_connection(db_config)
 
 require_relative "mystery_maker/version"
 Dir[File.join(__dir__, "/mystery_maker/models/*.rb")].each { |file| require_relative file }
-Dir[File.join(__dir__, "/mystery_maker/clues/*.rb")].each { |file| require_relative file }
+Dir[File.join(__dir__, "/mystery_maker/services/*.rb")].each { |file| require_relative file }
 
 module MysteryMaker
   class Error < StandardError; end

@@ -96,15 +96,5 @@ puts "Creating crime scene reports..."
   )
 end
 
-# TODO: Move these details down into a separate class (scenario generation).
-murder_desc = "Security footage shows there were #{witnesses.length} witnesses. " \
-              "The first witness, named #{witnesses.first.name.split(" ").first}, " \
-              "lives somewhere on #{witnesses.first.address_street_name}."
-murder = CrimeSceneReport.create(
-  date: crime_event.date,
-  kind: "murder",
-  description: murder_desc,
-  city: "SQL City"
-)
-
-puts "A murder ocurred at #{murder.date} in #{murder.city}. Find the perp!"
+murder = ReportGenerator.new(witnesses, crime_event).call
+puts "\nA murder ocurred at #{murder.date} in #{murder.city}. Find the perp!\n(hint: Take a look at crime_scene_reports)"
