@@ -16,7 +16,6 @@ namespace :db do
   desc "Seed mystery"
   task :seed do
     load("config/seeds.rb")
-    puts "Scenario configured."
   end
 
   desc "Reset database with seeded data"

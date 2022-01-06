@@ -9,6 +9,7 @@ locations = world["locations"].map { |l| Location.create(name: l) }
 def create_date
   Faker::Date.between(from: '2021-04-05', to: '2021-04-12')
     .strftime("%Y%m%d")
+    .to_i
 end
 
 # Each event occurred 5 times during the week at random 1-hr intervals.
@@ -43,14 +44,42 @@ world["events"].each do |data|
 end
 
 people_with_events = Person.joins(:events).group('people.id')
-important_people = people_with_events.sample(3)
 
-perp = important_people.last
-puts "Created perp: #{perp.name}"
+perp = people_with_events.sample
+puts "Created perp: #{perp.name}."
 
-# Find any people that went to the same event.
+# Find any people that went to the same events as the perp.
 witnesses = perp.events.flat_map do |event|
   Event.find(event.id).people
 end
-puts "#{witnesses.length} witnesses: #{witnesses.pluck(:name).join(" and ")}"
+puts "#{witnesses.length} witnesses: #{witnesses.pluck(:name).join(", ")}."
 
+crime_event = perp.events.sample
+puts "Creating erroneous crime scene reports..."
+100.times do
+  date = create_date
+
+  kinds = if date == crime_event.date
+    world["crimes"].filter { |c| c != "murder" }
+  else
+    world["crimes"]
+  end
+
+  CrimeSceneReport.create(
+    date: date,
+    kind: kinds.sample,
+    description: Faker::Quotes::Shakespeare.hamlet_quote,
+    location: locations.sample.name
+  )
+end
+
+puts "Creating the real crime scene report..."
+murder = CrimeSceneReport.create(
+  date: crime_event.date,
+  kind: "murder",
+  # TODO: Clue
+  description: "A crime occurred at #{crime_event.name}.",
+  location: crime_event.location.name
+)
+
+puts "A murder ocurred at #{murder.date} at #{murder.location}. Find the perp!"

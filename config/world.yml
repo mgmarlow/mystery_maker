@@ -20,3 +20,12 @@ events:
     location: Upstart Cafe
   - name: SQL Meetup
     location: Tech Center
+
+crimes:
+  - murder
+  - robbery
+  - theft
+  - fraud
+  - arson
+  - smuggling
+  - blackmail

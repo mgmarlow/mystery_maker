@@ -57,6 +57,6 @@ CREATE TABLE events_people (
 CREATE TABLE crime_scene_reports (
   date INTEGER,
   kind TEXT,
-  description TEXT UNIQUE,
-  city TEXT
+  description TEXT,
+  location TEXT
 );
