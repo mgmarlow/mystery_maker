@@ -38,13 +38,14 @@ CREATE TABLE events (
   id INTEGER PRIMARY KEY,
   location_id INTEGER,
   name TEXT,
+  date INTEGER,
   start_time INTEGER,
   end_time INTEGER,
   FOREIGN KEY (location_id)
     REFERENCES locations (id)
 );
 
-CREATE TABLE people_events (
+CREATE TABLE events_people (
   person_id INTEGER,
   event_id INTEGER,
   FOREIGN KEY (person_id)
