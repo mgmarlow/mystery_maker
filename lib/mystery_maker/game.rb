@@ -13,6 +13,7 @@ class Game
     # Find any people that went to the same events as the perp.
     @witnesses ||= perp.events
       .flat_map { |event| Event.find(event.id).people }
+      .filter { |p| p.id != perp.id }
       .sample(2)
   end
 
