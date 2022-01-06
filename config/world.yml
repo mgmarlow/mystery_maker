@@ -1,0 +1,48 @@
+locations:
+  - Get Fit Now Gym
+  - Upstart Cafe
+  - Northwestern Park
+  - Tech Center
+  - Friendly LGS
+
+events:
+  - name: SQL Symphony Concert
+    location: Northwestern Park
+  - name: Rock Climbing 101
+    location: Get Fit Now Gym
+  - name: Vinyassa Yoga
+    location: Get Fit Now Gym
+  - name: Friday Night Magic
+    location: Friendly LGS
+  - name: Mic Night
+    location: Upstart Cafe
+  - name: Poetry Recital
+    location: Upstart Cafe
+  - name: SQL Meetup
+    location: Tech Center
+
+crimes:
+  - murder
+  - robbery
+  - theft
+  - fraud
+  - arson
+  - smuggling
+  - blackmail
+
+streets:
+  - Franklin Ave
+  - Northwestern Dr
+  - Ella Dr
+  - Johnson Ave
+  - Camino Real
+  - Carmel Mountain Rd
+  - Bennington St
+  - Carroll Canyon Rd
+
+cities:
+  - SQL City
+  - San Diego
+  - Big Sur
+  - Santa Barbara
+  - Sanfrantokyo

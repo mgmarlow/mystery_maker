@@ -29,43 +29,34 @@ CREATE TABLE interviews (
     REFERENCES people (id)
 );
 
-CREATE TABLE get_fit_now_members (
-  id TEXT PRIMARY KEY,
-  person_id INTEGER,
-  membership_start_date INTEGER,
-  membership_status TEXT,
-  FOREIGN KEY (person_id)
-    REFERENCES people (id)
+CREATE TABLE locations (
+  id INTEGER PRIMARY KEY,
+  name TEXT
 );
 
-CREATE TABLE get_fit_now_check_ins (
-  get_fit_now_member_id TEXT,
-  check_in_date INTEGER,
-  check_in_time INTEGER,
-  check_out_time INTEGER,
-  FOREIGN KEY (get_fit_now_member_id)
-    REFERENCES get_fit_now_members (id)
+CREATE TABLE events (
+  id INTEGER PRIMARY KEY,
+  location_id INTEGER,
+  name TEXT,
+  date INTEGER,
+  start_time INTEGER,
+  end_time INTEGER,
+  FOREIGN KEY (location_id)
+    REFERENCES locations (id)
 );
 
-CREATE TABLE facebook_event_check_ins (
+CREATE TABLE events_people (
   person_id INTEGER,
   event_id INTEGER,
-  event_name TEXT,
-  date INTEGER,
   FOREIGN KEY (person_id)
-    REFERENCES people (id)
+    REFERENCES people (id),
+  FOREIGN KEY (event_id)
+    REFERENCES events (id)
 );
 
 CREATE TABLE crime_scene_reports (
   date INTEGER,
-  type TEXT,
-  description TEXT UNIQUE,
+  kind TEXT,
+  description TEXT,
   city TEXT
-);
-
-CREATE TABLE incomes (
-  ssn TEXT,
-  annual_income INTEGER,
-  FOREIGN KEY (ssn)
-    REFERENCES people (ssn)
 );
