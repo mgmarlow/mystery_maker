@@ -1,4 +1,4 @@
-world = YAML::load(File.open("config/world.yml"))
+world = YAML.safe_load(File.open("config/world.yml"))
 
 puts "Creating people..."
 people = 500.times.map { Person.create_with_random }

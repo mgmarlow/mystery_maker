@@ -1,5 +1,5 @@
 class DriversLicense < ActiveRecord::Base
-  def self.create_with_random(args={})
+  def self.create_with_random(args = {})
     defaults = {
       id: Faker::DrivingLicence.unique.usa_driving_licence,
       age: Faker::Number.number(digits: 2),

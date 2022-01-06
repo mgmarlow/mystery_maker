@@ -1,5 +1,5 @@
 namespace :db do
-  db_config = YAML::load(File.open("config/database.yml"))
+  db_config = YAML.safe_load(File.open("config/database.yml"))
 
   desc "Create the database"
   task :create do
@@ -9,7 +9,7 @@ namespace :db do
 
   desc "Drop the database"
   task :drop do
-    File.delete(db_config["database"]) if File.exists?(db_config["database"])
+    File.delete(db_config["database"]) if File.exist?(db_config["database"])
     puts "Database deleted."
   end
 
