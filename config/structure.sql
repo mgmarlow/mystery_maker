@@ -58,5 +58,5 @@ CREATE TABLE crime_scene_reports (
   date INTEGER,
   kind TEXT,
   description TEXT,
-  location TEXT
+  city TEXT
 );

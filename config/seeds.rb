@@ -1,7 +1,29 @@
 world = YAML.safe_load(File.open("config/world.yml"))
 
+def create_random_drivers_license
+  DriversLicense.create(
+    id: Faker::DrivingLicence.unique.usa_driving_licence,
+    age: Faker::Number.number(digits: 2),
+    height: Faker::Number.number(digits: 2),
+    eye_color: Faker::Color.color_name,
+    hair_color: Faker::Color.color_name,
+    gender: Faker::Gender.binary_type,
+    plate_number: Faker::Alphanumeric.unique.alpha(number: 7),
+    car_make: Faker::Vehicle.make,
+    car_model: Faker::Vehicle.model
+  )
+end
+
 puts "Creating people..."
-people = 500.times.map { Person.create_with_random }
+people = 500.times.map do
+  Person.create(
+    name: Faker::Name.unique.name,
+    address_number: Faker::Address.unique.building_number,
+    address_street_name: world["streets"].sample,
+    ssn: Faker::IDNumber.unique.invalid,
+    drivers_license: create_random_drivers_license
+  )
+end
 
 puts "Creating locations..."
 locations = world["locations"].map { |l| Location.create(name: l) }
@@ -45,17 +67,18 @@ end
 
 people_with_events = Person.joins(:events).group('people.id')
 
+puts "Creating perp..."
 perp = people_with_events.sample
-puts "Created perp: #{perp.name}."
 
+puts "Creating witnesses..."
 # Find any people that went to the same events as the perp.
-witnesses = perp.events.flat_map do |event|
-  Event.find(event.id).people
-end
-puts "#{witnesses.length} witnesses: #{witnesses.pluck(:name).join(", ")}."
+witnesses = perp.events
+  .flat_map { |event| Event.find(event.id).people }
+  .sample(2)
 
 crime_event = perp.events.sample
-puts "Creating erroneous crime scene reports..."
+
+puts "Creating crime scene reports..."
 100.times do
   date = create_date
 
@@ -69,17 +92,19 @@ puts "Creating erroneous crime scene reports..."
     date: date,
     kind: kinds.sample,
     description: Faker::Quotes::Shakespeare.hamlet_quote,
-    location: locations.sample.name
+    city: world["cities"].sample
   )
 end
 
-puts "Creating the real crime scene report..."
+# TODO: Move these details down into a separate class (scenario generation).
+murder_desc = "Security footage shows there were #{witnesses.length} witnesses. " \
+              "The first witness, named #{witnesses.first.name.split(" ").first}, " \
+              "lives somewhere on #{witnesses.first.address_street_name}."
 murder = CrimeSceneReport.create(
   date: crime_event.date,
   kind: "murder",
-  # TODO: Clue
-  description: "A crime occurred at #{crime_event.name}.",
-  location: crime_event.location.name
+  description: murder_desc,
+  city: 'SQL City'
 )
 
-puts "A murder ocurred at #{murder.date} at #{murder.location}. Find the perp!"
+puts "A murder ocurred at #{murder.date} in #{murder.city}. Find the perp!"

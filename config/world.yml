@@ -29,3 +29,20 @@ crimes:
   - arson
   - smuggling
   - blackmail
+
+streets:
+  - Franklin Ave
+  - Northwestern Dr
+  - Ella Dr
+  - Johnson Ave
+  - Camino Real
+  - Carmel Mountain Rd
+  - Bennington St
+  - Carroll Canyon Rd
+
+cities:
+  - SQL City
+  - San Diego
+  - Big Sur
+  - Santa Barbara
+  - Sanfrantokyo
