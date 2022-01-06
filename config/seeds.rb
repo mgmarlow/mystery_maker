@@ -26,10 +26,10 @@ people = 500.times.map do
 end
 
 puts "Creating locations..."
-locations = world["locations"].map { |l| Location.create(name: l) }
+world["locations"].map { |l| Location.create(name: l) }
 
 def create_date
-  Faker::Date.between(from: '2021-04-05', to: '2021-04-12')
+  Faker::Date.between(from: "2021-04-05", to: "2021-04-12")
     .strftime("%Y%m%d")
     .to_i
 end
@@ -53,7 +53,7 @@ world["events"].each do |data|
       location: location,
       date: date,
       start_time: start_time,
-      end_time: end_time,
+      end_time: end_time
     )
   end
 
@@ -65,7 +65,7 @@ world["events"].each do |data|
   end
 end
 
-people_with_events = Person.joins(:events).group('people.id')
+people_with_events = Person.joins(:events).group("people.id")
 
 puts "Creating perp..."
 perp = people_with_events.sample
@@ -104,7 +104,7 @@ murder = CrimeSceneReport.create(
   date: crime_event.date,
   kind: "murder",
   description: murder_desc,
-  city: 'SQL City'
+  city: "SQL City"
 )
 
 puts "A murder ocurred at #{murder.date} in #{murder.city}. Find the perp!"
