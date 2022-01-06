@@ -15,7 +15,7 @@ namespace :db do
 
   desc "Seed mystery"
   task :seed do
-    MysteryMaker::ScenarioA.new
+    load("config/seeds.rb")
     puts "Scenario configured."
   end
 
