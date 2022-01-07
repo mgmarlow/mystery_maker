@@ -1,12 +1,14 @@
 class Game
-  def run
-    puts "A murder occurred at #{crime_scene_report.date} " \
-         "in #{crime_scene_report.city}. " \
-         "Find the perp!\n(hint: Take a look at crime_scene_reports)"
+  def first_time_setup
+    [
+      ReportGenerator.new(witnesses, solution.murder_date)
+    ].each(&:call)
   end
 
-  def crime_scene_report
-    @crime_scene_report ||= ReportGenerator.new(witnesses, solution.murder_date).call
+  def run
+    puts "A murder occurred at #{solution.murder_date} " \
+     "in SQL City. Find the perp!" \
+     "\n(hint: Take a look at crime_scene_reports)"
   end
 
   def witnesses
@@ -22,6 +24,6 @@ class Game
   end
 
   def solution
-    Solution.first
+    @solution ||= Solution.first
   end
 end

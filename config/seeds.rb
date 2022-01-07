@@ -88,4 +88,11 @@ puts "Creating crime scene reports..."
   )
 end
 
-Game.new.run
+game = Game.new
+
+puts "Performing first time setup..."
+game.first_time_setup
+
+puts "\n#{"*" * 10}\n"
+game.run
+puts "\n#{"*" * 10}\n"
