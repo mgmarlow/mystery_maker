@@ -68,8 +68,9 @@ end
 puts "Creating solution..."
 people_with_events = Person.joins(:events).group("people.id")
 perp = people_with_events.sample
-murder_date = perp.events.sample.date
-Solution.create(person: perp, murder_date: murder_date)
+crime_event = perp.events.sample
+murder_date = crime_event.date
+Solution.create(person: perp, murder_date: murder_date, event: crime_event)
 
 puts "Creating crime scene reports..."
 100.times do
@@ -95,4 +96,4 @@ game.first_time_setup
 
 puts "\n#{"*" * 10}\n"
 game.run
-puts "\n#{"*" * 10}\n"
+puts "#{"*" * 10}\n"

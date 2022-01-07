@@ -22,7 +22,7 @@ CREATE TABLE people (
 );
 
 CREATE TABLE interviews (
-  person_id INTEGER,
+  person_id TEXT,
   transcript TEXT,
   FOREIGN KEY (person_id)
     REFERENCES people (id)
@@ -63,6 +63,9 @@ CREATE TABLE crime_scene_reports (
 CREATE TABLE solutions (
   murder_date INTEGER,
   person_id TEXT,
+  event_id INTEGER,
   FOREIGN KEY (person_id)
-    REFERENCES people (id)
-)
+    REFERENCES people (id),
+  FOREIGN KEY (event_id)
+    REFERENCES events (id)
+);

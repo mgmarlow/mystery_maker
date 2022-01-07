@@ -1,7 +1,8 @@
 class Game
   def first_time_setup
     [
-      ReportGenerator.new(witnesses, solution.murder_date)
+      ReportGenerator.new(witnesses, solution.murder_date),
+      WitnessInterviewGenerator.new(witnesses, solution.event)
     ].each(&:call)
   end
 
@@ -12,9 +13,8 @@ class Game
   end
 
   def witnesses
-    # Find any people that went to the same events as the perp.
-    @witnesses ||= perp.events
-      .flat_map { |event| Event.find(event.id).people }
+    # Find witnesses who went to the event where the crime took place.
+    @witnesses ||= solution.event.people
       .filter { |p| p.id != perp.id }
       .sample(2)
   end
