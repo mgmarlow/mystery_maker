@@ -26,6 +26,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "sqlite3", "~> 1.4.2"
 
   spec.add_development_dependency "standard", "~> 1.6.0"
+  spec.add_development_dependency "debug", "~> 1.4.0"
 
   # For more information and examples about making a new gem, checkout our
   # guide at: https://bundler.io/guides/creating_gem.html

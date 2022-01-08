@@ -23,7 +23,9 @@ people = 500.times.map do
     address_street_name: world["streets"].sample,
     drivers_license: create_random_drivers_license
   )
-end
+rescue ActiveRecord::RecordNotUnique
+  # Just skip over clashing names and exclude the nil records
+end.compact
 
 puts "Creating locations..."
 world["locations"].map { |l| Location.create(name: l) }
