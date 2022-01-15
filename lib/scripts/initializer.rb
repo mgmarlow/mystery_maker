@@ -1,7 +1,7 @@
-$db_config = YAML.safe_load(File.open("config/database.yml"))
+DB_CONFIG = YAML.safe_load(File.open("config/database.yml"))
 
 def prepared?
-  File.exist?($db_config["database"])
+  File.exist?(DB_CONFIG["database"])
 end
 
 unless prepared?
@@ -10,4 +10,4 @@ unless prepared?
   Rake::Task["db:create"].invoke
 end
 
-ActiveRecord::Base.establish_connection($db_config)
+ActiveRecord::Base.establish_connection(DB_CONFIG)
