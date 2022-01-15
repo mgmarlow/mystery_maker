@@ -41,7 +41,7 @@ List all of the available tables with `.tables`:
 ```
 sqlite>.tables
 crime_scene_reports  events_people        people
-drivers_licenses     interviews           solutions
+drivers_licenses     interviews
 events               locations
 ```
 
