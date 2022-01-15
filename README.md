@@ -5,10 +5,9 @@ Randomly-generated mysteries derived from the [SQL City Murder Mystery](https://
 ## Installation
 
 ```
-git clone https://github.com/mgmarlow/mystery_maker.git
-
-cd mystery_maker
-bundle install
+$ git clone https://github.com/mgmarlow/mystery_maker.git
+$ cd ./mystery_maker
+$ bundle install
 ```
 
 ## Playing the game
@@ -23,10 +22,7 @@ A murder occurred at 20210409 in SQL City. Find the perp!
 **********
 SQLite version 3.36.0 2021-06-18 18:58:49
 Enter ".help" for usage hints.
-sqlite> .tables
-crime_scene_reports  events_people        people
-drivers_licenses     interviews           solutions
-events               locations
+sqlite>
 ```
 
 On first run, this command will create and seed a database with a working scenario. You can also use the `db` rake commands to re-seed the database with new data:
