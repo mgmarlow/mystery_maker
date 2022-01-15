@@ -1,11 +1,13 @@
-class LocationGenerator
-  attr_reader :world
+module MysteryMaker
+  class LocationGenerator
+    attr_reader :world
 
-  def initialize(world)
-    @world = world
-  end
+    def initialize(world)
+      @world = world
+    end
 
-  def call
-    world["locations"].map { |l| Location.create(name: l) }
+    def call
+      world["locations"].map { |l| Location.create(name: l) }
+    end
   end
 end
