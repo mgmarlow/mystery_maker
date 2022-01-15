@@ -1,29 +1,21 @@
 class Game
   def first_time_setup
+    world = World.new
+
+    # NOTE: Order matters.
     [
-      ReportGenerator.new(witnesses, solution.murder_date),
-      WitnessInterviewGenerator.new(witnesses, solution.event)
+      PersonGenerator.new(world),
+      LocationGenerator.new(world),
+      EventGenerator.new(world),
+      SolutionGenerator.new,
+      ReportGenerator.new(world),
+      InterviewGenerator.new
     ].each(&:call)
   end
 
   def run
-    puts "A murder occurred at #{solution.murder_date} " \
+    puts "A murder occurred at #{Helpers.solution.murder_date} " \
      "in SQL City. Find the perp!" \
-     "\n(hint: Take a look at crime_scene_reports)"
-  end
-
-  def witnesses
-    # Find witnesses who went to the event where the crime took place.
-    @witnesses ||= solution.event.people
-      .filter { |p| p.id != perp.id }
-      .sample(2)
-  end
-
-  def perp
-    @perp ||= solution.person
-  end
-
-  def solution
-    @solution ||= Solution.first
+     "\n(hint: try 'sqlite3 mystery.db')"
   end
 end
