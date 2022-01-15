@@ -2,9 +2,6 @@
 
 Randomly-generated mysteries derived from the [SQL City Murder Mystery](https://mystery.knightlab.com/).
 
-> A murder occurred at 20210409 in SQL City. Find the perp!
-> (hint: Take a look at crime_scene_reports)
-
 ## Installation
 
 ```
@@ -14,41 +11,53 @@ cd mystery_maker
 bundle install
 ```
 
-Set up the `mystery.db` Sqlite3 database:
+## Playing the game
+
+Run `bin/mystery`:
 
 ```
+$ bin/mystery
+**********
+A murder occurred at 20210409 in SQL City. Find the perp!
+(hint: check crime_scene_reports)
+**********
+SQLite version 3.36.0 2021-06-18 18:58:49
+Enter ".help" for usage hints.
+sqlite> .tables
+crime_scene_reports  events_people        people
+drivers_licenses     interviews           solutions
+events               locations
+```
+
+On first run, this command will create and seed a database with a working scenario. You can also use the `db` rake commands to re-seed the database with new data:
+
+```
+# Reset the database and seed with fresh data
 bundle exec rake db:reset
 ```
 
-Test that everything worked as expected:
+## Hints
+
+List all of the available tables with `.tables`:
 
 ```
-$ sqlite3
-$ .open mystery.db
-$ select * from 'crime_scene_report' where city='SQL City' and ...;
+sqlite>.tables
+crime_scene_reports  events_people        people
+drivers_licenses     interviews           solutions
+events               locations
 ```
 
-## Playing the game
+Inspect the columns and datatypes of an individual table with `.schema`:
 
-- Generate a new mystery: `rake db:reset`
-- Open the database: `sqlite3 mystery.db`
-- Look at the available tables w/ `.tables`:
-  ```
-  sqlite> .tables
-  crime_scene_reports  events_people        people
-  drivers_licenses     interviews  
-  events               locations
-  ```
-- Inspect the available columns w/ `.schema`:
-  ```
-  sqlite> .schema crime_scene_reports
-  CREATE TABLE crime_scene_reports (
-    date INTEGER,
-    kind TEXT,
-    description TEXT,
-    city TEXT
-  );
-  ```
+```
+sqlite> .schema crime_scene_reports
+CREATE TABLE crime_scene_reports (
+  date INTEGER,
+  kind TEXT,
+  description TEXT,
+  city TEXT
+);
+```
 
 ## Contributing
 
