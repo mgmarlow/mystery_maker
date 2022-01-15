@@ -7,7 +7,7 @@ module MysteryMaker
       crime_event = perp.events.sample
       murder_date = crime_event.date
 
-      Solution.create(
+      Scenario.create(
         person: perp,
         murder_date: murder_date,
         event: crime_event

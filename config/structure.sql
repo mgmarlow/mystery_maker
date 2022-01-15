@@ -60,7 +60,7 @@ CREATE TABLE crime_scene_reports (
   city TEXT
 );
 
-CREATE TABLE solutions (
+CREATE TABLE scenarios (
   murder_date INTEGER,
   person_id TEXT,
   event_id INTEGER,

@@ -16,21 +16,21 @@ module MysteryMaker
     private
 
     def witnesses
-      Helpers.witnesses
+      Game.witnesses
     end
 
     def crime_event
-      Helpers.crime_event
+      Game.active_scenario.event
+    end
+
+    def perp
+      Game.active_scenario.person
     end
 
     def generate_noise
       (Person.all - witnesses).sample(100).each do |unrelated_person|
         Interview.create(person_id: unrelated_person.id, transcript: Faker::Lorem.sentence)
       end
-    end
-
-    def perp
-      @perp ||= Solution.first.person
     end
   end
 end

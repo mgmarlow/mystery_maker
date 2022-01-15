@@ -32,6 +32,8 @@ On first run, this command will create and seed a database with a working scenar
 bundle exec rake db:reset
 ```
 
+**Don't peek at the `scenarios` table until you're ready to reveal the solution!**
+
 ## Hints
 
 List all of the available tables with `.tables`:

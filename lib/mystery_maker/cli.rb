@@ -8,7 +8,7 @@ module MysteryMaker
       end
 
       puts "#{"*" * 10}\n"
-      puts "A murder occurred at #{Helpers.solution.murder_date} " \
+      puts "A murder occurred at #{Game.active_scenario.murder_date} " \
         "in SQL City. Find the perp!\n" \
         "(hint: check crime_scene_reports)"
       puts "#{"*" * 10}\n"
@@ -17,7 +17,7 @@ module MysteryMaker
     end
 
     def seeded?
-      Solution.all.count > 0
+      Scenario.all.count > 0
     end
   end
 end

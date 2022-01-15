@@ -20,11 +20,11 @@ module MysteryMaker
     private
 
     def witnesses
-      Helpers.witnesses
+      Game.witnesses
     end
 
     def murder_date
-      Helpers.murder_date
+      Game.active_scenario.murder_date
     end
 
     def generate_noise
