@@ -8,11 +8,11 @@ class PersonGenerator
   def call
     500.times.map do
       Person.create(
-          id: Faker::IDNumber.unique.invalid,
-          name: "#{Faker::Name.first_name} #{Faker::Name.last_name}",
-          address_number: Faker::Address.unique.building_number,
-          address_street_name: world["streets"].sample,
-          drivers_license: create_random_drivers_license
+        id: Faker::IDNumber.unique.invalid,
+        name: "#{Faker::Name.first_name} #{Faker::Name.last_name}",
+        address_number: Faker::Address.unique.building_number,
+        address_street_name: world["streets"].sample,
+        drivers_license: create_random_drivers_license
       )
     rescue ActiveRecord::RecordNotUnique
       # Just skip over clashing names and exclude the nil records
